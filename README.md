@@ -17,12 +17,18 @@ python3 csv_to_md.py new_export.csv --old previous_export.csv
 python3 csv_to_md.py export.csv --out ~/notes/granola --date-col created_at
 ```
 
+To set a default output directory, add this to `~/.zshrc`:
+
+```bash
+export GRANOLA_NOTES_DIR="$HOME/Google Drive/My Drive/_notes/granola"
+```
+
 Run `python3 csv_to_md.py --help` for the full reference.
 
 | Option | Description |
 |---|---|
 | `csv_path` | Granola CSV export to convert |
-| `--out DIR` | Output root (default: `/Users/brian/Google Drive/My Drive/_notes/granola`) |
+| `--out DIR` | Output root (default: `$GRANOLA_NOTES_DIR`, else `./granola_notes`) |
 | `--date-col NAME` | Column for the date folder (default: first found of `document_created`, `date`, `created_at`, `meeting_date`, `start_time`, `updated_at`) |
 | `--old OLD_CSV` | Older export; rows whose `document_id` appears in it are skipped |
 

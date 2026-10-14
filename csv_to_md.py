@@ -8,7 +8,8 @@ import sys
 from collections import Counter
 from datetime import datetime
 
-DEFAULT_OUT = "/Users/brian/Google Drive/My Drive/_notes/granola"
+# Output root: --out flag > GRANOLA_NOTES_DIR env var > ./granola_notes
+DEFAULT_OUT = os.environ.get("GRANOLA_NOTES_DIR", "granola_notes")
 DATE_CANDIDATES = ["document_created", "date", "created_at", "meeting_date", "start_time", "updated_at"]
 
 
@@ -54,7 +55,8 @@ Examples:
   python3 csv_to_md.py new_export.csv --old previous_export.csv
   python3 csv_to_md.py export.csv --out ~/notes/granola --date-col created_at
 
-Default output directory: {DEFAULT_OUT}
+Output directory precedence: --out, then $GRANOLA_NOTES_DIR, then ./granola_notes
+(current default: {DEFAULT_OUT})
 Prints per-date note counts and a total; exits non-zero if no date column is found.""",
     )
     p.add_argument("csv_path", help="path to the Granola CSV export to convert")
